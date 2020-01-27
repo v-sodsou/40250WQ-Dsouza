@@ -128,5 +128,16 @@ namespace Mine.ViewModels
             LoadDatasetCommand.Execute(null);
         }
         #endregion Refresh
+
+        /// <summary>
+        /// API to Read the Data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ItemModel> Read(string id)
+        {
+            var result = await DataStore.ReadAsync(id);
+            return result;
+        }
     }
 }
