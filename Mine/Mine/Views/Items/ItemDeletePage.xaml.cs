@@ -35,7 +35,7 @@ namespace Mine.Views
         {
             MessagingCenter.Send(this, "Delete", viewModel.Data);
 
-            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            await Navigation.PushModalAsync(new NavigationPage(new ItemIndexPage()));
 
             await Navigation.PopAsync();
         }
@@ -47,9 +47,15 @@ namespace Mine.Views
         /// <param name="e"></param>
         async void Cancel_Clicked(object sender, EventArgs e)
         {
-            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            await Navigation.PushModalAsync(new NavigationPage(new ItemIndexPage()));
 
             await Navigation.PopAsync();
+        }
+
+        
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
     }
 }
