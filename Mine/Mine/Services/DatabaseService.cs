@@ -49,7 +49,7 @@ namespace Mine.Services
 
         public Task<ItemModel> ReadAsync(string id)
         {
-            return Database.Table<ItemModel>().Where(i => string.Equals(i.Id, id)).FirstOrDefaultAsync();
+            return Database.Table<ItemModel>().Where(i => i.Id.Equals(id)).FirstOrDefaultAsync();
         }
 
     }
