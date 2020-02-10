@@ -54,6 +54,12 @@ namespace Mine.Services
 
         public async Task<bool> UpdateAsync(ItemModel item)
         {
+            var data = await ReadAsync(item.Id);
+            if (data == null)
+            {
+                return false;
+            }
+
             var result = await Database.UpdateAsync(item);
 
             return (result == 1);
