@@ -46,5 +46,11 @@ namespace Mine.Services
             var result = await Database.InsertAsync(item);
             return (result == 1);
         }
+
+        public Task<ItemModel> ReadAsync(string id)
+        {
+            return Database.Table<ItemModel>().Where(i => string.Equals(i.Id, id)).FirstOrDefaultAsync();
+        }
+
     }
 }
