@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Mine.Services
 {
  
-    public class DatabaseService
+    public class DatabaseService : IDataStore<ItemModel>
     {
         static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {
@@ -47,24 +47,34 @@ namespace Mine.Services
             return (result == 1);
         }
 
-        public Task<ItemModel> ReadAsync(string id)
+        public async Task<ItemModel> ReadAsync(string id)
         {
-            return Database.Table<ItemModel>().Where(i => i.Id.Equals(id)).FirstOrDefaultAsync();
+            return await Database.Table<ItemModel>().Where(i => i.Id.Equals(id)).FirstOrDefaultAsync();
         }
 
-        public Task<int> UpdateAsync(ItemModel item)
+        public async Task<bool> UpdateAsync(ItemModel item)
         {
-            return Database.UpdateAsync(item);
+            var result = await Database.UpdateAsync(item);
+
+            return (result == 1);
         }
 
-        public Task<int> DeleteAsync(ItemModel item)
+        public async Task<bool> DeleteAsync(string id)
         {
-            return Database.DeleteAsync(item);
+            var data = await ReadAsync(id);
+            if (data == null)
+            {
+                return false;
+            }
+
+            var result = await Database.DeleteAsync(data);
+
+            return (result == 1);
         }
 
-        public Task<List<ItemModel>> IndexAsync()
+        public async Task<List<ItemModel>> IndexAsync(bool forceRefresh = false)
         {
-            return Database.Table<ItemModel>().ToListAsync();
+            return await Database.Table<ItemModel>().ToListAsync();
         }
 
     }
