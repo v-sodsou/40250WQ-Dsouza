@@ -23,14 +23,14 @@ namespace Mine.Views
 
         void DataSource_Toggled(object sender, EventArgs e)
         {
-           
+
             if (DataSourceValue.IsToggled == true)
             {
-                
+                MessagingCenter.Send(this, "SetDataSource", 1);
             }
             else
             {
-                
+                MessagingCenter.Send(this, "SetDataSource", 0);
             }
         }
     }
