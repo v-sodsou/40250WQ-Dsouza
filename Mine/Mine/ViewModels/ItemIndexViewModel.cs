@@ -244,5 +244,11 @@ namespace Mine.ViewModels
             var result = await DataStore.ReadAsync(id);
             return result;
         }
+
+        public void WipeDataList() 
+        { 
+            DataStore.WipeDataList(); 
+            SetNeedsRefresh(true); 
+        }
     }
 }
