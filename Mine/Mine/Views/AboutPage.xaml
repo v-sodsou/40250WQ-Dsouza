@@ -70,6 +70,7 @@
                     <Button Text="Wipe"
                         HorizontalOptions="Start"    
                         VerticalOptions="Center"
+                        Clicked="WipeDataList_Clicked"
                             />
 
                 </StackLayout>
