@@ -41,15 +41,16 @@
 
         </ScrollView>
         <ScrollView  Grid.Row="2">
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal"
                          VerticalOptions="Center"
                          Padding="50,0,0,0">
 
-                <Label Text="SQL Data Source" 
+                    <Label Text="SQL Data Source" 
                        HorizontalOptions="Start"
                        VerticalOptions="Center"/>
 
-                <Switch
+                    <Switch
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"
                         x:Name="DataSourceValue"
@@ -57,6 +58,21 @@
                         IsToggled="{Binding ItemIndexViewModel.Instance.CurrentDataSource}"
                         />
 
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center" 
+                         Padding="50,0,0,0">
+
+                    <Label Text="Wipe Data List" 
+                       HorizontalOptions="Start" 
+                       VerticalOptions="Center"/>
+
+                    <Button Text="Wipe"
+                        HorizontalOptions="Start"    
+                        VerticalOptions="Center"
+                            />
+
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </Grid>
