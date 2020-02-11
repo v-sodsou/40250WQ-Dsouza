@@ -38,6 +38,24 @@
                 <Label Text="Sonali D'souza"></Label>
                 <Label x:Name="CurrentDateTime"></Label>
             </StackLayout>
+
+        </ScrollView>
+        <ScrollView  Grid.Row="2">
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center"
+                         Padding="50,0,0,0">
+
+                <Label Text="SQL Data Source" 
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"/>
+
+                <Switch
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"
+                        x:Name="DataSourceValue"
+                        />
+
+            </StackLayout>
         </ScrollView>
     </Grid>
     
