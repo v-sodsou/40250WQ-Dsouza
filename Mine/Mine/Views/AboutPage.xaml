@@ -53,6 +53,7 @@
                         HorizontalOptions="Start" 
                         VerticalOptions="Center"
                         x:Name="DataSourceValue"
+                        Toggled="DataSource_Toggled"
                         />
 
             </StackLayout>
