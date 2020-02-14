@@ -19,11 +19,17 @@ namespace Mine.Services
         static SQLiteAsyncConnection Database => lazyInitializer.Value;
         static bool initialized = false;
 
+        /// <summary>
+        /// Constructor for the DatabaseService
+        /// </summary>
         public DatabaseService()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
         async Task InitializeAsync()
         {
             if (!initialized)
@@ -47,11 +53,21 @@ namespace Mine.Services
             return (result == 1);
         }
 
+        /// <summary>
+        /// Takes the ID and finds it in the data set
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Record if found else null</returns>
         public async Task<ItemModel> ReadAsync(string id)
         {
             return await Database.Table<ItemModel>().Where(i => i.Id.Equals(id)).FirstOrDefaultAsync();
         }
 
+        /// <summary>
+        /// Update the data with the information passed in
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>True for pass, else fail</returns>
         public async Task<bool> UpdateAsync(ItemModel item)
         {
             var data = await ReadAsync(item.Id);
@@ -65,6 +81,11 @@ namespace Mine.Services
             return (result == 1);
         }
 
+        /// <summary>
+        /// Deletes the Data passed in by
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True for pass, else fail</returns>
         public async Task<bool> DeleteAsync(string id)
         {
             var data = await ReadAsync(id);
@@ -78,11 +99,20 @@ namespace Mine.Services
             return (result == 1);
         }
 
+        /// <summary>
+        /// Get the full list of data
+        /// </summary>
+        /// <param name="forceRefresh"></param>
+        /// <returns>List of records</returns>
         public async Task<List<ItemModel>> IndexAsync(bool forceRefresh = false)
         {
             return await Database.Table<ItemModel>().ToListAsync();
         }
 
+        /// <summary>
+        /// Wipe Data List
+        /// </summary>
+        /// <returns></returns>
         public void WipeDataList() 
         {
             Database.DropTableAsync<ItemModel>().GetAwaiter().GetResult();
