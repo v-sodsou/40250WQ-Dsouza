@@ -21,6 +21,12 @@ namespace Mine.Views
             CurrentDateTime.Text = System.DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         }
 
+
+        /// <summary>
+        /// On DataSource Toggled
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void DataSource_Toggled(object sender, EventArgs e)
         {
 
@@ -34,6 +40,12 @@ namespace Mine.Views
             }
         }
 
+
+        /// <summary>
+        /// On WipeDataList button clicked event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async void WipeDataList_Clicked(object sender, EventArgs e) 
         {
             bool answer = await DisplayAlert("Delete Data", "Are you sure you want to delete all data?", "Yes", "No"); 
