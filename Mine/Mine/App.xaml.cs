@@ -16,6 +16,7 @@ namespace Mine
         {
             InitializeComponent();
 
+            //Stand up the datasource for ItemIndexViewModel
             var temp = ViewModels.ItemIndexViewModel.Instance;
 
             // Call the Main Page to open
